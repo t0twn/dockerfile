@@ -2,7 +2,6 @@ FROM alpine
 
 WORKDIR /app
 
-COPY run.sh .
+COPY --chmod=750 run.sh /usr/local/bin/run
 
-RUN chmod 750 run.sh
 RUN apk add --no-cache bash curl
