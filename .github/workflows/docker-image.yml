@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "start" ]
 
 jobs:
   detect:
@@ -68,7 +68,7 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ vars.DOCKERHUB_REPO }}:latest
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/start:latest
 
   build-sub:
     needs: [detect, build-root]
