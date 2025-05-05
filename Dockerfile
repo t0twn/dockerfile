@@ -1,7 +1,7 @@
-FROM alpine
+FROM debian:bookworm-slim AS build
 
-WORKDIR /app
+RUN apt update && apt install -y curl && apt clean && rm -rf /var/lib/apt/lists/*
+RUN curl --proto '=https' --tlsv1.2 -sSf \
+        https://raw.githubusercontent.com/devmatteini/dra/refs/heads/main/install.sh | bash -s -- --to /usr/local/bin/
 
-COPY --chmod=750 run.sh /usr/local/bin/run
-
-RUN apk add --no-cache bash curl
+COPY --chmod=550 run.sh /usr/local/bin/run
